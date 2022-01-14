@@ -20,3 +20,8 @@ elem = browser.find_element("query")
 elem
 elem.send_keys("셀레니움 공부")
 elem.send_keys(Keys.ENTER)
+
+# elem2 = browser.find_element("a") 
+# print(elem2)
+# for e in elem2:
+#     elem2.get_attribute("href")

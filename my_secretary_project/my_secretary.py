@@ -2,29 +2,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
-
-# browser = webdriver.Chrome()
-# browser.get("http://naver.com")
-
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62"}
-
-
-# elem = browser.find_element(By.ID, "query")
-# elem.send_keys("인천 날씨")
-# elem.send_keys(Keys.ENTER)
-
-# try:
-#     # 성공했을때 동작 수행
-#     elem = WebDriverWait(browser, 10).util (EC.presence_of_all_elements_located((By.XPATH,"//*[@id='__next']/div/div[1]/div[10]/div[2]/div[1]/div[2]/div/div[3]/table/tbody/tr[4]/td[2]/button/b")))
-# finally:
-#     # 실패시 브라우저 종료
-#     browser.quit()
 
 def creat_soup(url):
     res = requests.get(url, headers=headers)
@@ -63,7 +41,6 @@ def get_news():
     news_url = "https://news.naver.com/"
     news_soup = creat_soup(news_url)
 
-    # headlines = news_soup.find_all("div",attrs={"class":"cjs_t"})
     headlines = news_soup.find_all("div",attrs={"class":"cjs_journal_wrap _item_contents"}, limit=3)
 
     print("[헤드라인 뉴스]")
@@ -107,7 +84,7 @@ def get_english():
     for eng in engs[:len(engs)//2]:
         print(eng.get_text().strip())
 
-        
+
     # MY VERSION
     engs = eng_soup.find_all("div",attrs={"class":"conv_txt"})
     kos = engs[0]
